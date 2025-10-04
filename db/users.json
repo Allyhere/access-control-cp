@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nome": "Alice Smith",
+      "nomeUsuario": "alice.smith",
+      "email": "alice.smith@example.com"
+    },
+    {
+      "id": 2,
+      "nome": "Bob Johnson",
+      "nomeUsuario": "bob.johnson",
+      "email": "bob.johnson@example.com"
+    },
+    {
+      "id": 3,
+      "nome": "Charlie Brown",
+      "nomeUsuario": "charlie.brown",
+      "email": "charlie.brown@example.com"
+    },
+    {
+      "id": 4,
+      "nome": "Diana Prince",
+      "nomeUsuario": "diana.prince",
+      "email": "diana.prince@example.com"
+    },
+    {
+      "id": 5,
+      "nome": "Ethan Hunt",
+      "nomeUsuario": "ethan.hunt",
+      "email": "ethan.hunt@example.com"
+    },
+    {
+      "id": 6,
+      "nome": "Fiona Glenanne",
+      "nomeUsuario": "fiona.glenanne",
+      "email": "fiona.glenanne@example.com"
+    },
+    {
+      "id": 7,
+      "nome": "George Costanza",
+      "nomeUsuario": "george.costanza",
+      "email": "george.costanza@example.com"
+    },
+    {
+      "id": 8,
+      "nome": "Hannah Abbott",
+      "nomeUsuario": "hannah.abbott",
+      "email": "hannah.abbott@example.com"
+    },
+    {
+      "id": 9,
+      "nome": "Ian Malcolm",
+      "nomeUsuario": "ian.malcolm",
+      "email": "ian.malcolm@example.com"
+    },
+    {
+      "id": 10,
+      "nome": "Jane Doe",
+      "nomeUsuario": "jane.doe",
+      "email": "jane.doe@example.com"
+    }
+  ]
+}
