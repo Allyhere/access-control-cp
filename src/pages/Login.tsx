@@ -16,40 +16,72 @@ function Login() {
   const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
   return (
-    <section className="grid min-h-screen place-content-center">
-      <h1>Login</h1>
-      <form
-        className="grid gap-4 bg-amber-50"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="grid gap-2">
-          <label htmlFor="userName">Username</label>
+    <section className="grid gap-y-2 place-content-center grid-cols-1 py-4 px-6 w-fit rounded-lg bg-gray-50 shadow-2xl min-w-80 h-fit place-self-center border border-gray-100">
+      <h1 className="text-2xl font-bold text-gray-900 justify-self-start">
+        Login
+      </h1>
+      <form className="grid gap-4 " onSubmit={handleSubmit(onSubmit)}>
+        <div className="grid gap-1">
+          <label
+            htmlFor="userName"
+            className="text-sm text-gray-800 font-medium"
+          >
+            Usuário
+          </label>
           <input
             type="text"
-            placeholder="Username"
+            placeholder="nome.sobrenome"
             id="userName"
+            className="border-2 border-indigo-500 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300"
             {...register("userName", {
-              required: true,
-              minLength: 2,
+              required: "Nome é obrigatório",
+              minLength: { value: 3, message: "Mínimo 3 caracteres" },
             })}
           />
           {errors.userName && (
-            <span className="text-red-500">Campo obrigatório</span>
+            <span className="text-red-500 text-sm">
+              {errors.userName.message}
+            </span>
           )}
         </div>
-        <label htmlFor="userEmail" className="grid gap-2">
-          Email
+        <div className="grid gap-1">
+          <label
+            htmlFor="userEmail"
+            className="text-sm text-gray-800 font-medium"
+          >
+            Email
+          </label>
           <input
             type="email"
-            placeholder="Email"
+            placeholder="nome.sobrenome@mail.com"
             id="userEmail"
-            {...register("userEmail", { required: true, minLength: 3 })}
+            className="border-2 border-indigo-500 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            {...register("userEmail", {
+              required: "Email é obrigatório",
+              minLength: { value: 3, message: "Mínimo 3 caracteres" },
+            })}
           />
-        </label>
-        <p>
-          Não tem uma conta? <Link to="/register">Registre-se</Link>
+          {errors.userEmail && (
+            <span className="text-red-500 text-sm">
+              {errors.userEmail.message}
+            </span>
+          )}
+        </div>
+        <p className="text-base text-gray-600">
+          Não tem uma conta?{" "}
+          <Link
+            to="/register"
+            className="text-indigo-500 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          >
+            Registre-se
+          </Link>
         </p>
-        <button type="submit">Login</button>
+        <button
+          type="submit"
+          className="w-fit justify-self-end px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-300"
+        >
+          Login
+        </button>
       </form>
     </section>
   );
