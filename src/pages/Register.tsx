@@ -18,9 +18,9 @@ function Register() {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log("Dados do registro:", data);
-      };
+  };
 
-  // Validar a senha de confirmação
+  // Lê a password para validação de confirmação depois
   const password = watch("password");
 
   return (
@@ -42,7 +42,7 @@ function Register() {
             <span className="text-red-500">Nome é obrigatório</span>
           )}
         </div>
-        
+
         <div className="grid gap-2">
           <label htmlFor="email">Email</label>
           <input
@@ -51,9 +51,7 @@ function Register() {
             placeholder="Seu email"
             {...register("email", { required: true })}
           />
-          {errors.email && (
-            <span className="text-red-500">Email inválido</span>
-          )}
+          {errors.email && <span className="text-red-500">Email inválido</span>}
         </div>
 
         <div className="grid gap-2">
@@ -79,7 +77,8 @@ function Register() {
             placeholder="Confirme sua senha"
             {...register("confirmPassword", {
               required: true,
-              validate: (value) => value === password || "Senhas não são iguais",
+              validate: (value) =>
+                value === password || "Senhas não são iguais",
             })}
           />
           {errors.confirmPassword && (
