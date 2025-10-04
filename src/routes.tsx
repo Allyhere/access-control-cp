@@ -1,15 +1,26 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Outlet } from "react-router";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
+import { Wrapper } from "./layout/wrapper";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
+    element: (
+      <Wrapper>
+        <Outlet />
+      </Wrapper>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+    ],
   },
 ]);
 
