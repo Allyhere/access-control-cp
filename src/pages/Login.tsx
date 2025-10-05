@@ -33,6 +33,7 @@ function Login() {
       if (filteredUsers.length) {
         console.log("Login successful:", users[0]);
         setValue(users[0]);
+        window.location.reload();
       } else {
         throw Error("Invalid userName or userEmail.");
       }
