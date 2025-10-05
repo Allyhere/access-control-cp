@@ -42,7 +42,7 @@ function Register() {
         return;
       }
 
-      const postResponse = await fetch("http://localhost:3000/users", {
+      const postResponse = await fetch("http://localhost:3001/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
