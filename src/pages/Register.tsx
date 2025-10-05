@@ -28,7 +28,7 @@ function Register() {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/users?name=${data.name}&email=${data.email}`
+        `http://localhost:3001/users?name=${data.name}&email=${data.email}`
       );
       const existingUsers = await response.json();
 
