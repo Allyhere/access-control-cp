@@ -33,6 +33,10 @@ function Register() {
       );
       const existingUsers = await response.json();
 
+      const duplicate = existingUsers.find(
+        (user: FormData) =>
+          user.name === data.name || user.email === data.email
+
     return (
       <section className="grid min-h-screen place-content-center">
         <h1>Registro</h1>
