@@ -1,10 +1,14 @@
 import { type PropsWithChildren } from "react";
+import { Navbar } from "../components/Navbar";
 
 function Wrapper({ children }: PropsWithChildren) {
   return (
-    <main className="min-h-screen w-full grid rows-[1fr_max-content_1fr]">
-      {children}
-    </main>
+    <>
+      <Navbar />
+      <main className="min-h-screen w-full grid rows-[1fr_max-content_1fr]">
+        {children}
+      </main>
+    </>
   );
 }
 
