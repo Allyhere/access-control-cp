@@ -37,6 +37,18 @@ function Register() {
         (user: FormData) =>
           user.name === data.name || user.email === data.email
 
+      const postResponse = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        }),
+      });
+
     return (
       <section className="grid min-h-screen place-content-center">
         <h1>Registro</h1>
