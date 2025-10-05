@@ -131,7 +131,7 @@ function Register() {
         {successMessage && <p className="text-green-600">{successMessage}</p>}
 
         <p>
-          Já tem conta? <Link to="/login">Faça login</Link>
+          Já tem conta? <Link to="/">Faça login</Link>
         </p>
 
         <button type="submit">Registrar</button>
