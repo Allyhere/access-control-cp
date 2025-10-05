@@ -1,8 +1,9 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link } from "react-router";
+import { useState } from "react";
 
 type FormData = {
-  name: string;
+  nome: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -16,29 +17,68 @@ function Register() {
     watch,
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("Dados do registro:", data);
-  };
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
-  // Lê a password para validação de confirmação depois
   const password = watch("password");
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    try {
+      const response = await fetch(
+        `http://localhost:3001/users?nome=${data.nome}&email=${data.email}`
+      );
+      const existingUsers = await response.json();
+
+      const duplicate = existingUsers.find(
+        (user: FormData) =>
+          user.nome === data.nome || user.email === data.email
+      );
+
+      if (duplicate) {
+        setErrorMessage("Nome de usuário ou email já cadastrados."); 
+        return;
+      }
+
+      const postResponse = await fetch("http://localhost:3001/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nome: data.nome,
+          email: data.email,
+          nomeUsuario: data.email.split("@")[0],
+          password: data.password,
+        }),
+      });
+
+      if (!postResponse.ok) throw new Error("Erro ao cadastrar usuário");
+
+      setSuccessMessage("Usuário cadastrado com sucesso!");
+    } catch (error) {
+      setErrorMessage("Erro ao conectar ao servidor."); 
+    }
+  };
 
   return (
     <section className="grid min-h-screen place-content-center">
       <h1>Registro</h1>
       <form
-        className="grid gap-4 rounded bg-amber-50 p-4"
+        className="grid gap-4 bg-amber-50 p-4 rounded"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid gap-2">
-          <label htmlFor="name">Nome</label>
+          <label htmlFor="nome">Nome</label>
           <input
             type="text"
-            id="name"
+            id="nome"
             placeholder="Seu nome"
-            {...register("name", { required: true, minLength: 2 })}
+            {...register("nome", { required: true, minLength: 2 })}
           />
-          {errors.name && (
+          {errors.nome && (
             <span className="text-red-500">Nome é obrigatório</span>
           )}
         </div>
@@ -88,8 +128,11 @@ function Register() {
           )}
         </div>
 
+        {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+        {successMessage && <p className="text-green-600">{successMessage}</p>}
+
         <p>
-          Já tem conta? <Link to="/login">Faça login</Link>
+          Já tem conta? <Link to="/">Faça login</Link>
         </p>
 
         <button type="submit">Registrar</button>
