@@ -6,7 +6,7 @@ function Wrapper({ children }: PropsWithChildren) {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen w-full grid rows-[1fr_max-content_1fr]">
+      <main className="h-full w-full grid rows-[1fr_max-content_1fr]">
         {children}
       </main>
       <Footer />
