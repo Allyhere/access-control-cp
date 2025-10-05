@@ -27,12 +27,13 @@ function Login() {
 
       const filteredUsers = users.filter(
         (user: { nomeUsuario: string; email: string }) =>
-          user.nomeUsuario === userName && user.email === userEmail
+          user.nomeUsuario === userName && user.email === userEmail,
       );
 
       if (filteredUsers.length) {
         console.log("Login successful:", users[0]);
         setValue(users[0]);
+        window.location.reload();
       } else {
         throw Error("Invalid userName or userEmail.");
       }
@@ -42,15 +43,15 @@ function Login() {
   };
 
   return (
-    <section className="grid gap-y-2 place-content-center grid-cols-1 py-4 px-6 w-fit rounded-lg bg-gray-50 shadow-2xl min-w-80 h-fit place-self-center border border-gray-100 ">
-      <h1 className="text-2xl font-bold text-gray-900 justify-self-start">
+    <section className="grid h-fit w-fit min-w-80 grid-cols-1 place-content-center gap-y-2 place-self-center rounded-lg border border-gray-100 bg-gray-50 px-6 py-4 shadow-2xl">
+      <h1 className="justify-self-start text-2xl font-bold text-gray-900">
         Login
       </h1>
-      <form className="grid gap-4 " onSubmit={handleSubmit(onSubmit)}>
+      <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="grid gap-1">
           <label
             htmlFor="userName"
-            className="text-sm text-gray-800 font-medium"
+            className="text-sm font-medium text-gray-800"
           >
             Usuário
           </label>
@@ -59,14 +60,14 @@ function Login() {
             placeholder="nome.sobrenome"
             id="userName"
             autoComplete="username"
-            className="border-2 border-indigo-500 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            className="rounded-md border-2 border-indigo-500 px-3 py-2 focus:ring-2 focus:ring-indigo-300 focus:outline-none"
             {...register("userName", {
               required: "Nome é obrigatório",
               minLength: { value: 3, message: "Mínimo 3 caracteres" },
             })}
           />
           {errors.userName && (
-            <span className="text-red-500 text-sm">
+            <span className="text-sm text-red-500">
               {errors.userName.message}
             </span>
           )}
@@ -74,7 +75,7 @@ function Login() {
         <div className="grid gap-1">
           <label
             htmlFor="userEmail"
-            className="text-sm text-gray-800 font-medium"
+            className="text-sm font-medium text-gray-800"
           >
             Email
           </label>
@@ -83,14 +84,14 @@ function Login() {
             placeholder="nome.sobrenome@mail.com"
             id="userEmail"
             autoComplete="email"
-            className="border-2 border-indigo-500 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            className="rounded-md border-2 border-indigo-500 px-3 py-2 focus:ring-2 focus:ring-indigo-300 focus:outline-none"
             {...register("userEmail", {
               required: "Email é obrigatório",
               minLength: { value: 3, message: "Mínimo 3 caracteres" },
             })}
           />
           {errors.userEmail && (
-            <span className="text-red-500 text-sm">
+            <span className="text-sm text-red-500">
               {errors.userEmail.message}
             </span>
           )}
@@ -99,14 +100,14 @@ function Login() {
           Não tem uma conta?{" "}
           <Link
             to="/register"
-            className="text-indigo-500 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            className="text-indigo-500 hover:underline focus:ring-2 focus:ring-indigo-300 focus:outline-none"
           >
             Registre-se
           </Link>
         </p>
         <button
           type="submit"
-          className="w-fit justify-self-end px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          className="w-fit justify-self-end rounded-md bg-indigo-500 px-4 py-2 text-white transition-colors hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-300 focus:outline-none"
         >
           Login
         </button>
