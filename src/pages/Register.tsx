@@ -27,7 +27,7 @@ function Register() {
     <section className="grid min-h-screen place-content-center">
       <h1>Registro</h1>
       <form
-        className="grid gap-4 bg-amber-50 p-4 rounded"
+        className="grid gap-4 rounded bg-amber-50 p-4"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid gap-2">
