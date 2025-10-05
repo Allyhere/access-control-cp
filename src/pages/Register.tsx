@@ -1,5 +1,6 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Link } from "react-router";
+import { useState } from "react";
 
 type FormData = {
   name: string;
@@ -20,6 +21,9 @@ function Register() {
     console.log("Dados do registro:", data);
   };
 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  
   // Lê a password para validação de confirmação depois
   const password = watch("password");
 
@@ -27,7 +31,7 @@ function Register() {
     <section className="grid min-h-screen place-content-center">
       <h1>Registro</h1>
       <form
-        className="grid gap-4 rounded bg-amber-50 p-4"
+        className="grid gap-4 bg-amber-50 p-4 rounded"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid gap-2">
@@ -89,7 +93,7 @@ function Register() {
         </div>
 
         <p>
-          Já tem conta? <Link to="/login">Faça login</Link>
+          Já tem conta? <Link to="/">Faça login</Link>
         </p>
 
         <button type="submit">Registrar</button>
