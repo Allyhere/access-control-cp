@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# ACCESS CONTROL CP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Índice
 
-Currently, two official plugins are available:
+- [Tecnologias utilizadas](#tecnologias-utilizadas)
+- [Instalação](#instalação)
+- [Nomes dos integrantes](#nomes-dos-integrantes)
+- [Estrutura de pastas do projeto](#estrutura-de-pastas-do-projeto)
+- [Link do GitHub](#link-do-github)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologias utilizadas
 
-## React Compiler
+- **React**
+- **Vite**
+- **TypeScript**
+- **Tailwind CSS**
+- **React Router**
+- **React Hook Form**
+- **JSON Server**
+- **ESLint**
+- **Prettier**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Instalação
 
-## Expanding the ESLint configuration
+1.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+2.  Inicie o servidor de desenvolvimento:
+    ```bash
+    npm run dev
+    ```
+3.  Em outro terminal, inicie a API fake:
+    ```bash
+    npm run api
+    ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Nomes dos integrantes
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Nome              | RM     |
+| ----------------- | ------ |
+| Camilo Micheletto | 564113 |
+| Carlos Silva      | 564968 |
+| Guilherme Ribeiro | 562700 |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Estrutura de pastas do projeto
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+access-control-cp/
+├───.gitignore
+├───.prettierrc
+├───eslint.config.js
+├───index.html
+├───package-lock.json
+├───package.json
+├───README.md
+├───tsconfig.app.json
+├───tsconfig.json
+├───tsconfig.node.json
+├───vite.config.ts
+├───db/
+│   └───users.json
+├───public/
+└───src/
+    ├───index.css
+    ├───main.tsx
+    ├───routes.tsx
+    ├───assets/
+    ├───components/
+    │   ├───Footer.tsx
+    │   └───Navbar.tsx
+    ├───hooks/
+    │   └───useLocalStorage.ts
+    ├───layout/
+    │   └───wrapper.tsx
+    └───pages/
+        ├───Login.tsx
+        └───Register.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Link do GitHub
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+https://github.com/Allyhere/access-control-cp
