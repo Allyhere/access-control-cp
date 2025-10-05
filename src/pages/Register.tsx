@@ -17,9 +17,9 @@ function Register() {
     watch,
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("Dados do registro:", data);
-  };
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setErrorMessage("");
+    setSuccessMessage("");
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
