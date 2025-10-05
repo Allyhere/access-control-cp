@@ -20,14 +20,18 @@ function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  // Lê a password para validação de confirmação depois
+    const password = watch("password");
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setErrorMessage("");
     setSuccessMessage("");
 
-
-
-    // Lê a password para validação de confirmação depois
-    const password = watch("password");
+    try {
+      const response = await fetch(
+        `http://localhost:3000/users?name=${data.name}&email=${data.email}`
+      );
+      const existingUsers = await response.json();
 
     return (
       <section className="grid min-h-screen place-content-center">
