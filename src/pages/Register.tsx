@@ -49,6 +49,15 @@ function Register() {
         }),
       });
 
+      if (!postResponse.ok) throw new Error("Erro ao cadastrar usuário");
+
+      setSuccessMessage("Usuário cadastrado com sucesso!"); 
+    } catch (error) {
+      setErrorMessage("Erro ao conectar ao servidor.");
+      console.error(error);
+    }
+  };
+
     return (
       <section className="grid min-h-screen place-content-center">
         <h1>Registro</h1>
