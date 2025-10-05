@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { useState } from "react";
 
 type FormData = {
-  name: string;
+  nome: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -28,13 +28,13 @@ function Register() {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/users?name=${data.name}&email=${data.email}`
+        `http://localhost:3001/users?nome=${data.nome}&email=${data.email}`
       );
       const existingUsers = await response.json();
 
       const duplicate = existingUsers.find(
         (user: FormData) =>
-          user.name === data.name || user.email === data.email
+          user.nome === data.nome || user.email === data.email
       );
 
       if (duplicate) {
@@ -48,8 +48,9 @@ function Register() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: data.name,
+          nome: data.nome,
           email: data.email,
+          nomeUsuario: data.email.split("@")[0],
           password: data.password,
         }),
       });
@@ -70,14 +71,14 @@ function Register() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid gap-2">
-          <label htmlFor="name">Nome</label>
+          <label htmlFor="nome">Nome</label>
           <input
             type="text"
-            id="name"
+            id="nome"
             placeholder="Seu nome"
-            {...register("name", { required: true, minLength: 2 })}
+            {...register("nome", { required: true, minLength: 2 })}
           />
-          {errors.name && (
+          {errors.nome && (
             <span className="text-red-500">Nome é obrigatório</span>
           )}
         </div>
