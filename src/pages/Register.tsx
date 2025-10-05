@@ -20,8 +20,7 @@ function Register() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  // Lê a password para validação de confirmação depois
-    const password = watch("password");
+  const password = watch("password");
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setErrorMessage("");
@@ -36,6 +35,12 @@ function Register() {
       const duplicate = existingUsers.find(
         (user: FormData) =>
           user.name === data.name || user.email === data.email
+      );
+
+      if (duplicate) {
+        setErrorMessage("Nome de usuário ou email já cadastrados."); 
+        return;
+      }
 
       const postResponse = await fetch("http://localhost:3000/users", {
         method: "POST",
@@ -51,86 +56,88 @@ function Register() {
 
       if (!postResponse.ok) throw new Error("Erro ao cadastrar usuário");
 
-      setSuccessMessage("Usuário cadastrado com sucesso!"); 
+      setSuccessMessage("Usuário cadastrado com sucesso!");
     } catch (error) {
-      setErrorMessage("Erro ao conectar ao servidor.");
-      console.error(error);
+      setErrorMessage("Erro ao conectar ao servidor."); 
     }
   };
 
-    return (
-      <section className="grid min-h-screen place-content-center">
-        <h1>Registro</h1>
-        <form
-          className="grid gap-4 bg-amber-50 p-4 rounded"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="grid gap-2">
-            <label htmlFor="name">Nome</label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Seu nome"
-              {...register("name", { required: true, minLength: 2 })}
-            />
-            {errors.name && (
-              <span className="text-red-500">Nome é obrigatório</span>
-            )}
-          </div>
+  return (
+    <section className="grid min-h-screen place-content-center">
+      <h1>Registro</h1>
+      <form
+        className="grid gap-4 bg-amber-50 p-4 rounded"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="grid gap-2">
+          <label htmlFor="name">Nome</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Seu nome"
+            {...register("name", { required: true, minLength: 2 })}
+          />
+          {errors.name && (
+            <span className="text-red-500">Nome é obrigatório</span>
+          )}
+        </div>
 
-          <div className="grid gap-2">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Seu email"
-              {...register("email", { required: true })}
-            />
-            {errors.email && <span className="text-red-500">Email inválido</span>}
-          </div>
+        <div className="grid gap-2">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Seu email"
+            {...register("email", { required: true })}
+          />
+          {errors.email && <span className="text-red-500">Email inválido</span>}
+        </div>
 
-          <div className="grid gap-2">
-            <label htmlFor="password">Senha</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Crie uma senha"
-              {...register("password", { required: true, minLength: 6 })}
-            />
-            {errors.password && (
-              <span className="text-red-500">
-                Senha deve ter pelo menos 6 caracteres
-              </span>
-            )}
-          </div>
+        <div className="grid gap-2">
+          <label htmlFor="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Crie uma senha"
+            {...register("password", { required: true, minLength: 6 })}
+          />
+          {errors.password && (
+            <span className="text-red-500">
+              Senha deve ter pelo menos 6 caracteres
+            </span>
+          )}
+        </div>
 
-          <div className="grid gap-2">
-            <label htmlFor="confirmPassword">Confirmar Senha</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              placeholder="Confirme sua senha"
-              {...register("confirmPassword", {
-                required: true,
-                validate: (value) =>
-                  value === password || "Senhas não são iguais",
-              })}
-            />
-            {errors.confirmPassword && (
-              <span className="text-red-500">
-                {errors.confirmPassword.message}
-              </span>
-            )}
-          </div>
+        <div className="grid gap-2">
+          <label htmlFor="confirmPassword">Confirmar Senha</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirme sua senha"
+            {...register("confirmPassword", {
+              required: true,
+              validate: (value) =>
+                value === password || "Senhas não são iguais",
+            })}
+          />
+          {errors.confirmPassword && (
+            <span className="text-red-500">
+              {errors.confirmPassword.message}
+            </span>
+          )}
+        </div>
 
-          <p>
-            Já tem conta? <Link to="/">Faça login</Link>
-          </p>
+        {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+        {successMessage && <p className="text-green-600">{successMessage}</p>}
 
-          <button type="submit">Registrar</button>
-        </form>
-      </section>
-    );
-  }
+        <p>
+          Já tem conta? <Link to="/login">Faça login</Link>
+        </p>
 
-  export { Register };
+        <button type="submit">Registrar</button>
+      </form>
+    </section>
+  );
+}
+
+export { Register };
