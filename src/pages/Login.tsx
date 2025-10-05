@@ -35,6 +35,7 @@ function Login() {
         setValue(users[0]);
         window.location.reload();
       } else {
+        alert("Usuário ou email inválido.");
         throw Error("Invalid userName or userEmail.");
       }
     } catch (error) {
@@ -105,10 +106,7 @@ function Login() {
             Registre-se
           </Link>
         </p>
-        <button
-          type="submit"
-          className="w-fit justify-self-end rounded-md bg-indigo-500 px-4 py-2 text-white transition-colors hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-300 focus:outline-none"
-        >
+        <button className="w-fit justify-self-end rounded-md bg-indigo-500 px-4 py-2 text-white transition-colors hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-300 focus:outline-none">
           Login
         </button>
       </form>
